@@ -14,7 +14,6 @@ import kotlinx.coroutines.*
 
 class ArticleDataSource(
     private val repository: ArticleRepository,
-    private val query: String,
     private val scope: CoroutineScope
 ) : PageKeyedDataSource<Int, Article> (){
 
