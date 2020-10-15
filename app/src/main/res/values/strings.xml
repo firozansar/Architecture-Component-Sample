@@ -8,4 +8,7 @@
     <string name="previous">Previous</string>
 
     <string name="articles">Articles</string>
+    <string name="retry">Retry</string>
+    <string name="error_msg">Error getting data</string>
+    <string name="viewtype_creation_error">ViewType not declared</string>
 </resources>
