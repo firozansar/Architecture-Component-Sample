@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="info.firozansari.architecture_component.ui.ArticlesFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_articles">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

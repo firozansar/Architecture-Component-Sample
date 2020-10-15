@@ -74,6 +74,9 @@ dependencies {
     //Pagination
     implementation "androidx.paging:paging-runtime:2.1.2"
 
+    // Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     //Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
