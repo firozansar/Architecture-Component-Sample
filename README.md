@@ -1,5 +1,5 @@
 # Architecture Component Sample
-This is a project using the latest architecture components and the Paging Library to retrieve data using MVVM pattern.
+This is a sample MVVM project using the latest architecture components and the Paging Library.
 
 ## View
 It's based in a [Activity - Fragment] architecture, also on a RecyclerView and Adapter view based on the data that has to be shown.
