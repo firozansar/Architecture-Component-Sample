@@ -1,16 +1,17 @@
 package info.firozansari.architecture_component.ui.adapter
 
-import android.R
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import info.firozansari.architecture_component.Extension.gone
 import info.firozansari.architecture_component.Extension.visible
 import info.firozansari.architecture_component.models.Article
+import info.firozansari.architecture_component.utils.DateUtils
 import kotlinx.android.synthetic.main.item_article.view.*
+import java.text.ParseException
+import java.text.ParsePosition
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -34,6 +35,7 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         itemView.blog_like_count_tv.text = """${getFormattedNumber(it.likes)} Likes"""
         itemView.blog_comment_count_tv.text = """${getFormattedNumber(it.comments)} Comments"""
         itemView.blog_content.text = it.content
+        itemView.blog_time_tv.text = DateUtils.covertDateToText(it.createdAt)
 
         it.user[0].avatar?.let { it1 ->
             Glide.with(itemView.context).load(it1)
