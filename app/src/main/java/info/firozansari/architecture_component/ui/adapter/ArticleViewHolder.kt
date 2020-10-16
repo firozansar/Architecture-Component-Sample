@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import info.firozansari.architecture_component.Extension.gone
+import info.firozansari.architecture_component.Extension.visible
 import info.firozansari.architecture_component.models.Article
 import kotlinx.android.synthetic.main.item_article.view.*
 
@@ -39,10 +40,17 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
                 .into(itemView.blog_user_image)
         }
         if(it.media.isNotEmpty()){
+            itemView.blog_title.text = it.media[0].title
+            itemView.blog_url.text = it.media[0].url
             Glide.with(itemView.context).load(it.media[0].image)
                 .into(itemView.blog_image)
+            itemView.blog_image.visible()
+            itemView.blog_title.visible()
+            itemView.blog_url.visible()
         } else {
             itemView.blog_image.gone()
+            itemView.blog_title.gone()
+            itemView.blog_url.gone()
         }
 
     }
