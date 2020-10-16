@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import info.firozansari.architecture_component.R
 import info.firozansari.architecture_component.api.NetworkState
+import info.firozansari.architecture_component.datasource.ArticleData
 import info.firozansari.architecture_component.models.Article
 
 /**
  * Created by Firoz Ansari on 15/10/2020.
  */
-class ArticlesAdapter (private val listener: OnClickListener) :
-    PagedListAdapter<Article, RecyclerView.ViewHolder>(diffCallback) {
+class ArticlesAdapter :
+    PagedListAdapter<ArticleData, RecyclerView.ViewHolder>(diffCallback) {
 
     private var currentNetworkState: NetworkState? = null
 
@@ -26,28 +27,20 @@ class ArticlesAdapter (private val listener: OnClickListener) :
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
             R.layout.item_article -> ArticleViewHolder(view)
-            R.layout.item_repo_state -> RepoStateViewHolder(view)
             else -> throw IllegalArgumentException(parent.context.getString(R.string.viewtype_creation_error))
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            R.layout.item_article -> (holder as ArticleViewHolder).bind(getItem(position), listener)
-            R.layout.item_repo_state -> (holder as RepoStateViewHolder).bind(currentNetworkState, listener)
-        }
+        (holder as ArticleViewHolder).bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (hasExtraRow() && position == itemCount - 1) {
-            R.layout.item_repo_state
-        } else {
-            R.layout.item_article
-        }
+        return R.layout.item_article
+
     }
 
     override fun getItemCount(): Int {
-        this.listener.whenListIsUpdated(super.getItemCount(), this.currentNetworkState)
         return super.getItemCount()
     }
 
@@ -78,9 +71,9 @@ class ArticlesAdapter (private val listener: OnClickListener) :
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
-            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean = oldItem == newItem
-            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean = oldItem == newItem
+        private val diffCallback = object : DiffUtil.ItemCallback<ArticleData>() {
+            override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean = oldItem == newItem
         }
     }
 }

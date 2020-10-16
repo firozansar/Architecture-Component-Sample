@@ -12,9 +12,8 @@ import kotlinx.android.synthetic.main.item_repo_state.view.*
  */
 class RepoStateViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
 
-    fun bind(networkState: NetworkState?, callback: ArticlesAdapter.OnClickListener) {
+    fun bind(networkState: NetworkState?) {
         setVisibleRightViews(networkState)
-        itemView.repo_state_button.setOnClickListener { callback.onRetryClick() }
     }
 
     private fun setVisibleRightViews(networkState: NetworkState?) {

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import info.firozansari.architecture_component.Extension.gone
 import info.firozansari.architecture_component.Extension.visible
+import info.firozansari.architecture_component.datasource.ArticleData
 import info.firozansari.architecture_component.models.Article
 import info.firozansari.architecture_component.utils.DateUtils
 import kotlinx.android.synthetic.main.item_article.view.*
@@ -20,40 +21,36 @@ import java.util.*
 class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
 
     fun bind(
-        article: Article?,
-        listener: ArticlesAdapter.OnClickListener
+        article: ArticleData?
     ) {
         article?.let {
             setupViews(it, itemView)
-            setListeners(listener, article)
         }
     }
 
-    fun setupViews(it: Article, itemView: View) {
-        itemView.blog_user_name_tv.text = it.user[0].name
-        itemView.blog_user_des_tv.text = it.user[0].designation
+    fun setupViews(it: ArticleData, itemView: View) {
+        itemView.blog_user_name_tv.text = it.username
+        itemView.blog_user_des_tv.text = it.designation
         itemView.blog_like_count_tv.text = """${getFormattedNumber(it.likes)} Likes"""
         itemView.blog_comment_count_tv.text = """${getFormattedNumber(it.comments)} Comments"""
-        itemView.blog_content.text = it.content
-        itemView.blog_time_tv.text = DateUtils.covertDateToText(it.createdAt)
+        itemView.blog_content.text = it.blogcontent
+        itemView.blog_time_tv.text = DateUtils.covertDateToText(it.created)
 
-        it.user[0].avatar?.let { it1 ->
-            Glide.with(itemView.context).load(it1)
+        it.blogimage?.let{
+            Glide.with(itemView.context).load(it)
                 .into(itemView.blog_user_image)
-        }
-        if(it.media.isNotEmpty()){
-            itemView.blog_title.text = it.media[0].title
-            itemView.blog_url.text = it.media[0].url
-            Glide.with(itemView.context).load(it.media[0].image)
-                .into(itemView.blog_image)
             itemView.blog_image.visible()
+        } ?: itemView.blog_image.gone()
+
+        it.blogtitle?.let{
+            itemView.blog_title.text = it
             itemView.blog_title.visible()
+        } ?: itemView.blog_title.gone()
+
+        it.blogurl?.let {
+            itemView.blog_url.text = it
             itemView.blog_url.visible()
-        } else {
-            itemView.blog_image.gone()
-            itemView.blog_title.gone()
-            itemView.blog_url.gone()
-        }
+        } ?: itemView.blog_url.gone()
 
     }
 
@@ -68,13 +65,6 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
             }
         }
         return numberString
-    }
-
-    private fun setListeners(
-        listener: ArticlesAdapter.OnClickListener,
-        article: Article
-    ) {
-        // TODO need implementing  onClicklistener
     }
 
 

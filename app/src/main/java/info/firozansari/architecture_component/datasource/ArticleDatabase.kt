@@ -1,17 +1,21 @@
 package info.firozansari.architecture_component.datasource
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import info.firozansari.architecture_component.datasource.ArticleDatabase.Companion.DB_VERSION
 
 /**
  * Created by Firoz Ansari on 16/10/2020.
  */
+@Database(entities = [ArticleData::class], version = DB_VERSION, exportSchema = false)
 abstract class ArticleDatabase : RoomDatabase() {
 
-    abstract fun articleDao(): ArticleDao
+    abstract fun getArticleDao(): ArticleDao
 
     companion object {
+        const val DB_VERSION = 1
         @Volatile
         private var INSTANCE: ArticleDatabase? = null
 

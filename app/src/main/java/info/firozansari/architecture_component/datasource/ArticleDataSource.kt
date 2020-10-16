@@ -15,20 +15,20 @@ import kotlinx.coroutines.*
 class ArticleDataSource(
     private val repository: ArticleRepository,
     private val scope: CoroutineScope
-) : PageKeyedDataSource<Int, Article> (){
+) : PageKeyedDataSource<Int, ArticleData> (){
 
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
     private var retryQuery: (() -> Any)? = null //Keep the last query just in case it fails
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ArticleData>) {
         retryQuery = { loadInitial(params, callback) }
         executeQuery(1) {
             callback.onResult(it, null, 2)
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ArticleData>) {
         val page = params.key
         retryQuery = { loadAfter(params, callback) }
         executeQuery(page) {
@@ -36,13 +36,13 @@ class ArticleDataSource(
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ArticleData>) {
         //Not implemented
     }
 
     private fun executeQuery(
         page: Int,
-        callback: (List<Article>) -> Unit
+        callback: (List<ArticleData>) -> Unit
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {

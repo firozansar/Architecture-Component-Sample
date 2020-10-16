@@ -10,16 +10,19 @@ import androidx.room.*
 interface ArticleDao {
 
     @Query("SELECT * FROM Article ORDER BY id ASC")
-    fun getAllData(): LiveData<List<ArticleData>>
+    fun getAllData(): List<ArticleData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(articleData: ArticleData)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertList(articles: List<ArticleData>)
 
     @Update
     suspend fun updateData(articleData: ArticleData)
 
     @Delete
-    suspend fun deleteItem(articleData: ArticleData)
+    suspend fun deleteData(articleData: ArticleData)
 
     @Query("DELETE FROM Article")
     suspend fun deleteAll()

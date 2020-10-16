@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_articles.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ArticlesFragment : Fragment(), ArticlesAdapter.OnClickListener {
+class ArticlesFragment : Fragment(){
 
-    private val recyclerViewAdapter = ArticlesAdapter(this)
+    private val recyclerViewAdapter = ArticlesAdapter()
     private val model by viewModel<ArticlesViewModel>()
 
     override fun onCreateView(
@@ -32,14 +32,10 @@ class ArticlesFragment : Fragment(), ArticlesAdapter.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        setupListeners()
         observeViewModelData()
 
     }
 
-    private fun setupListeners() {
-        fragment_button_load_data.setOnClickListener { model.refreshAllList() }
-    }
 
     private fun observeViewModelData() {
         // Not observing network state here because Room persistence is implemented
@@ -51,45 +47,6 @@ class ArticlesFragment : Fragment(), ArticlesAdapter.OnClickListener {
         fragment_recipes_recycler_view.adapter = recyclerViewAdapter
     }
 
-    //Override onRetryClick from ArticlesAdapter.OnClickListener
-    override fun onRetryClick() {
-        model.refreshFailedRequest()
-    }
 
-    //Override whenListIsUpdated from ArticlesAdapter.OnClickListener
-    override fun whenListIsUpdated(size: Int, networkState: NetworkState?) {
-        setInitialStates()
-        if (size == 0) {
-            setSizeZeroInitialState()
-            when (networkState) {
-                NetworkState.SUCCESS -> {
-                    fragment_text_network.text = getString(R.string.article_empty)
-                    fragment_text_network.visible()
-                    fragment_button_load_data.gone()
-                }
-                NetworkState.FAILED -> {
-                    fragment_text_network.text = getString(R.string.error_msg)
-                    fragment_image_warning.visible()
-                    fragment_text_network.visible()
-                    fragment_button_load_data.visible()
-                }
-                NetworkState.RUNNING -> {
-                    fragment_progress_bar.visible()
-                }
-            }
-        }
-    }
-
-    private fun setSizeZeroInitialState() {
-        fragment_text_network.text = getString(R.string.article_empty)
-        fragment_text_network.visible()
-    }
-
-    private fun setInitialStates() {
-        fragment_button_load_data.gone()
-        fragment_image_warning.gone()
-        fragment_text_network.gone()
-        fragment_progress_bar.gone()
-    }
 
 }
