@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/blog_like_tv"
+                android:id="@+id/blog_like_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="@+id/blog_like_btn" />
 
             <TextView
-                android:id="@+id/blog_like_count"
+                android:id="@+id/blog_comment_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginLeft="120dp"
@@ -60,8 +60,8 @@
                 android:layout_marginBottom="8dp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/blog_like_tv"
-                app:layout_constraintTop_toBottomOf="@+id/blog_desc"
+                app:layout_constraintStart_toEndOf="@+id/blog_like_count_tv"
+                app:layout_constraintTop_toBottomOf="@+id/blog_content"
                 app:layout_constraintVertical_bias="1.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -75,30 +75,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/blog_user_name"
+                android:id="@+id/blog_user_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Username"
-                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/blog_date"
+                android:id="@+id/blog_user_des_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:text="Blog Post Date"
-                android:textColor="@color/colorPrimaryDark"
+                android:text="User designation"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/blog_user_image"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
-                app:layout_constraintTop_toBottomOf="@+id/blog_user_name" />
+                app:layout_constraintTop_toBottomOf="@+id/blog_user_name_tv" />
 
             <ImageView
                 android:id="@+id/blog_image"
@@ -109,36 +107,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/acc_blog_title"
+                app:layout_constraintTop_toBottomOf="@+id/blog_user_des_tv"
                 app:srcCompat="@drawable/rectangle" />
 
             <TextView
-                android:id="@+id/blog_desc"
-                android:layout_width="352dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:id="@+id/blog_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. "
-                android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/blog_like_tv"
+                app:layout_constraintStart_toStartOf="@+id/blog_like_count_tv"
                 app:layout_constraintTop_toBottomOf="@+id/blog_image" />
 
-            <TextView
-                android:id="@+id/acc_blog_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Blog title ceva ceva"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_user_image" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

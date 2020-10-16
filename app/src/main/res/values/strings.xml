@@ -11,4 +11,6 @@
     <string name="retry">Retry</string>
     <string name="error_msg">Error getting data</string>
     <string name="viewtype_creation_error">ViewType not declared</string>
+    <string name="article_empty">No article is available</string>
+    <string name="load_data">Load data</string>
 </resources>
