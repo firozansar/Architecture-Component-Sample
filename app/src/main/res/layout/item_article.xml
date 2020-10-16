@@ -57,7 +57,6 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:src="@drawable/ellipse"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -82,20 +81,19 @@
                 android:layout_marginLeft="8dp"
                 android:text="User designation"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/blog_user_image"
                 app:layout_constraintStart_toEndOf="@+id/blog_user_image"
                 app:layout_constraintTop_toBottomOf="@+id/blog_user_name_tv" />
 
             <ImageView
                 android:id="@+id/blog_image"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginTop="16dp"
+                android:layout_margin="16dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_user_des_tv"
+                app:layout_constraintTop_toBottomOf="@+id/blog_user_image"
                 app:srcCompat="@drawable/rectangle" />
 
             <TextView
@@ -132,6 +130,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintTop_toBottomOf="@+id/blog_title" />
+
+            <TextView
+                android:id="@+id/blog_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1h"
+                tools:layout_editor_absoluteX="379dp"
+                tools:layout_editor_absoluteY="19dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
