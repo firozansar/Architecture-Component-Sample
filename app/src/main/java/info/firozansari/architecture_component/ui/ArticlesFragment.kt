@@ -42,8 +42,9 @@ class ArticlesFragment : Fragment(), ArticlesAdapter.OnClickListener {
     }
 
     private fun observeViewModelData() {
-        model.networkState?.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.updateNetworkState(it) })
-        model.recipes.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.submitList(it) })
+        // Not observing network state here because Room persistence is implemented
+        //model.networkState?.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.updateNetworkState(it) })
+        model.articles.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.submitList(it) })
     }
 
     private fun setupRecyclerView() {

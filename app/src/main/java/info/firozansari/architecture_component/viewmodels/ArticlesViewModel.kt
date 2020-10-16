@@ -29,7 +29,7 @@ class ArticlesViewModel (repo: ArticleRepository)  : ViewModel() {
 
     private val dataSource = ArticleDataSourceFactory(repository = repo, scope = ioScope)
 
-    val recipes = LivePagedListBuilder(dataSource, pagedListConfig()).build()
+    val articles = LivePagedListBuilder(dataSource, pagedListConfig()).build()
     val networkState: LiveData<NetworkState>? =
         Transformations.switchMap(dataSource.source) { it.getNetworkState() }
 
