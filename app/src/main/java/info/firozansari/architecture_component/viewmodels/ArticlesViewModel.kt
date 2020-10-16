@@ -20,12 +20,12 @@ class ArticlesViewModel (repo: ArticleRepository)  : ViewModel() {
     /**
      * Coroutines in a Main Thread
      */
-    val mainScope = CoroutineScope(Dispatchers.Main)
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     /**
      * Coroutines in a Pool of Thread
      */
-    val ioScope = CoroutineScope(Dispatchers.Default)
+    private val ioScope = CoroutineScope(Dispatchers.Default)
 
     private val dataSource = ArticleDataSourceFactory(repository = repo, scope = ioScope)
 
