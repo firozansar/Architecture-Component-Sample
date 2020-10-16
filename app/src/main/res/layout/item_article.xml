@@ -29,40 +29,26 @@
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginBottom="8dp"
                 android:text="4.5K Likes"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/blog_like_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/blog_content"/>
 
             <TextView
                 android:id="@+id/blog_comment_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_marginLeft="120dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="30K Comments"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/blog_like_btn"
-                app:layout_constraintTop_toTopOf="@+id/blog_like_btn" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blog_content"/>
 
-            <ImageView
-                android:id="@+id/blog_like_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/blog_like_count_tv"
-                app:layout_constraintTop_toBottomOf="@+id/blog_content"
-                app:layout_constraintVertical_bias="1.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/blog_user_image"
@@ -121,7 +107,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/blog_like_count_tv"
                 app:layout_constraintTop_toBottomOf="@+id/blog_image" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
