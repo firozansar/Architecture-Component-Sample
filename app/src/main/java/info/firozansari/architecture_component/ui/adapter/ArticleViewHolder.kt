@@ -36,22 +36,32 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         itemView.blog_content.text = it.blogcontent
         itemView.blog_time_tv.text = DateUtils.covertDateToText(it.created)
 
-        it.blogimage?.let{
-            Glide.with(itemView.context).load(it)
-                .into(itemView.blog_user_image)
+        Glide.with(itemView.context).load(it.userimage).into(itemView.blog_user_image)
+
+        val blogImage = it.blogimage
+        if(blogImage.isNullOrEmpty()){
+            itemView.blog_image.gone()
+        } else {
+            Glide.with(itemView.context).load(blogImage)
+                .into(itemView.blog_image)
             itemView.blog_image.visible()
-        } ?: itemView.blog_image.gone()
+        }
 
-        it.blogtitle?.let{
-            itemView.blog_title.text = it
+        val blogTitle = it.blogtitle
+        if(blogTitle.isNullOrEmpty()) {
+            itemView.blog_title.gone()
+        } else {
+            itemView.blog_title.text = blogTitle.toString()
             itemView.blog_title.visible()
-        } ?: itemView.blog_title.gone()
+        }
 
-        it.blogurl?.let {
-            itemView.blog_url.text = it
+        val blogUrl = it.blogurl
+        if(blogUrl.isNullOrEmpty()){
+            itemView.blog_url.gone()
+        } else {
+            itemView.blog_url.text = blogUrl.toString()
             itemView.blog_url.visible()
-        } ?: itemView.blog_url.gone()
-
+        }
     }
 
     private fun getFormattedNumber(number: Int): String {

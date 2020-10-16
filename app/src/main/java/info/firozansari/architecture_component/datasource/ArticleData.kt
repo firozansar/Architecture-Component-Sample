@@ -26,7 +26,7 @@ data class ArticleData (
         fun map(article: Article): ArticleData {
             return ArticleData(
                 id = article.id,
-                username = article.user[0].name,
+                username = article.user[0].name + " " + article.user[0].lastname,
                 designation = article.user[0].designation,
                 userimage = article.user[0].avatar,
                 blogimage =  getBlogImage(article),
