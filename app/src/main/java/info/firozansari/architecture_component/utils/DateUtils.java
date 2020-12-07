@@ -80,7 +80,7 @@ public class DateUtils {
                 } else {
                     convTime = (day / 7) + " Week " + suffix;
                 }
-            } else if (day < 7) {
+            } else {
                 convTime = day + " Days " + suffix;
             }
         }
