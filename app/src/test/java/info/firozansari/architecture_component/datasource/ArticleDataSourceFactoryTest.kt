@@ -14,9 +14,6 @@ import org.koin.test.inject
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 
-/**
- * Created by Firoz Ansari on 15/10/2020.
- */
 @RunWith(JUnit4::class)
 class ArticleDataSourceFactoryTest : BaseMockServerTest() {
     private val articleRepository by inject<ArticleRepository>()
@@ -53,8 +50,6 @@ class ArticleDataSourceFactoryTest : BaseMockServerTest() {
             assertEquals(articleListMocked.isNullOrEmpty(), false)
             val article = articleListMocked[0]
             assertEquals(article.id, 1)
-            assertEquals(article.user.size, 1)
-            assertEquals(article.media.size, 1)
         }
     }
 

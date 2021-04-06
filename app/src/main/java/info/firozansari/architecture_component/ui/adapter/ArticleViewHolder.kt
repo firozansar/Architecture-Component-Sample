@@ -6,14 +6,8 @@ import com.bumptech.glide.Glide
 import info.firozansari.architecture_component.Extension.gone
 import info.firozansari.architecture_component.Extension.visible
 import info.firozansari.architecture_component.datasource.ArticleData
-import info.firozansari.architecture_component.models.Article
 import info.firozansari.architecture_component.utils.DateUtils
 import kotlinx.android.synthetic.main.item_article.view.*
-import java.text.ParseException
-import java.text.ParsePosition
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 /**
  * Created by Firoz Ansari on 15/10/2020.
@@ -39,7 +33,7 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         Glide.with(itemView.context).load(it.userimage).into(itemView.blog_user_image)
 
         val blogImage = it.blogimage
-        if(blogImage.isNullOrEmpty()){
+        if (blogImage.isNullOrEmpty()) {
             itemView.blog_image.gone()
         } else {
             Glide.with(itemView.context).load(blogImage)
@@ -48,7 +42,7 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         }
 
         val blogTitle = it.blogtitle
-        if(blogTitle.isNullOrEmpty()) {
+        if (blogTitle.isNullOrEmpty()) {
             itemView.blog_title.gone()
         } else {
             itemView.blog_title.text = blogTitle.toString()
@@ -56,7 +50,7 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         }
 
         val blogUrl = it.blogurl
-        if(blogUrl.isNullOrEmpty()){
+        if (blogUrl.isNullOrEmpty()) {
             itemView.blog_url.gone()
         } else {
             itemView.blog_url.text = blogUrl.toString()
@@ -68,14 +62,12 @@ class ArticleViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
         var numberString = ""
         numberString = when {
             Math.abs(number / 1000) > 1 -> {
-                (number / 1000).toString() + "k";
+                (number / 1000).toString() + "k"
             }
             else -> {
-                number.toString();
+                number.toString()
             }
         }
         return numberString
     }
-
-
 }

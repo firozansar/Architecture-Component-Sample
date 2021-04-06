@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import info.firozansari.architecture_component.R
 import info.firozansari.architecture_component.api.NetworkState
 import info.firozansari.architecture_component.datasource.ArticleData
-import info.firozansari.architecture_component.models.Article
 
 /**
  * Created by Firoz Ansari on 15/10/2020.
@@ -37,14 +36,10 @@ class ArticlesAdapter :
 
     override fun getItemViewType(position: Int): Int {
         return R.layout.item_article
-
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
-
-    private fun hasExtraRow() = currentNetworkState != null && currentNetworkState != NetworkState.SUCCESS
+    private fun hasExtraRow() =
+        currentNetworkState != null && currentNetworkState != NetworkState.SUCCESS
 
     fun updateNetworkState(newNetworkState: NetworkState?) {
         val currentNetworkState = this.currentNetworkState
@@ -72,8 +67,11 @@ class ArticlesAdapter :
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<ArticleData>() {
-            override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean = oldItem == newItem
-            override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean = oldItem == newItem
+            override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean =
+                oldItem == newItem
+
+            override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean =
+                oldItem == newItem
         }
     }
 }

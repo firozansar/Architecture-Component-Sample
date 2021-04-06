@@ -3,10 +3,12 @@ package info.firozansari.architecture_component.datasource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import info.firozansari.architecture_component.api.ArticleService
 import info.firozansari.architecture_component.api.NetworkState
-import info.firozansari.architecture_component.models.Article
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.launch
 
 /**
  * Created by Firoz Ansari on 15/10/2020.
@@ -15,13 +17,16 @@ import kotlinx.coroutines.*
 class ArticleDataSource(
     private val repository: ArticleRepository,
     private val scope: CoroutineScope
-) : PageKeyedDataSource<Int, ArticleData> (){
+) : PageKeyedDataSource<Int, ArticleData>() {
 
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
     private var retryQuery: (() -> Any)? = null //Keep the last query just in case it fails
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ArticleData>) {
+    override fun loadInitial(
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, ArticleData>
+    ) {
         retryQuery = { loadInitial(params, callback) }
         executeQuery(1) {
             callback.onResult(it, null, 2)
@@ -73,5 +78,4 @@ class ArticleDataSource(
         retryQuery = null
         prevQuery?.invoke()
     }
-
 }

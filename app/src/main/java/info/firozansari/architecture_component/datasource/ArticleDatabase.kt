@@ -16,6 +16,7 @@ abstract class ArticleDatabase : RoomDatabase() {
 
     companion object {
         const val DB_VERSION = 1
+
         @Volatile
         private var INSTANCE: ArticleDatabase? = null
 
@@ -32,5 +33,4 @@ abstract class ArticleDatabase : RoomDatabase() {
             )
                 .build()
     }
-
 }

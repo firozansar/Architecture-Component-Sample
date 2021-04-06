@@ -8,7 +8,7 @@ import info.firozansari.architecture_component.models.Article
  * Created by Firoz Ansari on 16/10/2020.
  */
 @Entity(tableName = "Article")
-data class ArticleData (
+data class ArticleData(
     @PrimaryKey
     var id: Int,
     var username: String,
@@ -21,7 +21,7 @@ data class ArticleData (
     var created: String,
     var likes: Int,
     var comments: Int
-){
+) {
     companion object {
         fun map(article: Article): ArticleData {
             return ArticleData(
@@ -29,7 +29,7 @@ data class ArticleData (
                 username = article.user[0].name + " " + article.user[0].lastname,
                 designation = article.user[0].designation,
                 userimage = article.user[0].avatar,
-                blogimage =  getBlogImage(article),
+                blogimage = getBlogImage(article),
                 blogtitle = getBlogTitle(article),
                 blogurl = getBlogUrl(article),
                 blogcontent = article.content,
@@ -39,24 +39,24 @@ data class ArticleData (
             )
         }
 
-        private fun getBlogImage(article: Article): String{
-            if(article.media.isNotEmpty()){
-                 return article.media[0].image
+        private fun getBlogImage(article: Article): String {
+            if (article.media.isNotEmpty()) {
+                return article.media[0].image
             } else {
                 return ""
             }
         }
 
-        private fun getBlogTitle(article: Article): String{
-            if(article.media.isNotEmpty()){
+        private fun getBlogTitle(article: Article): String {
+            if (article.media.isNotEmpty()) {
                 return article.media[0].title
             } else {
                 return ""
             }
         }
 
-        private fun getBlogUrl(article: Article): String{
-            if(article.media.isNotEmpty()){
+        private fun getBlogUrl(article: Article): String {
+            if (article.media.isNotEmpty()) {
                 return article.media[0].url
             } else {
                 return ""

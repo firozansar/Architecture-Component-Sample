@@ -15,7 +15,7 @@ import kotlinx.coroutines.cancel
 /**
  * Created by Firoz Ansari on 15/10/2020.
  */
-class ArticlesViewModel (repo: ArticleRepository)  : ViewModel() {
+class ArticlesViewModel(repo: ArticleRepository) : ViewModel() {
 
     /**
      * Coroutines in a Main Thread

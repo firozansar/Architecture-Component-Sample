@@ -2,13 +2,9 @@ package info.firozansari.architecture_component.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import info.firozansari.architecture_component.models.Article
 import kotlinx.coroutines.CoroutineScope
 
-/**
- * Created by Firoz Ansari on 15/10/2020.
- */
-class ArticleDataSourceFactory (
+class ArticleDataSourceFactory(
     private val repository: ArticleRepository,
     private val scope: CoroutineScope
 ) : DataSource.Factory<Int, ArticleData>() {
@@ -22,5 +18,4 @@ class ArticleDataSourceFactory (
     }
 
     fun getSource() = source.value
-
 }
